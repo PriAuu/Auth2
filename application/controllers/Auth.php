@@ -37,6 +37,47 @@ class Auth extends CI_Controller
         }
     }
 
+
+    public function edit_profile()
+    {
+        if (empty($this->session->userdata['email'])) {
+            redirect(site_url() . 'auth/login');
+        } else {
+
+            $data = $this->session->userdata;
+            $dataInfo = array(
+                'id' => $data['id']
+            );
+
+            $data['news_item'] = $this->user_model->get_news_by_id($dataInfo['id']);
+
+            $this->form_validation->set_rules('firstname', 'First Name', 'required|min_length[2]');
+            $this->form_validation->set_rules('lastname', 'Last Name', 'required|min_length[2]');
+
+            if ($this->form_validation->run() == FALSE) {
+
+                $this->load->view('navbar');
+                $this->load->view('auth/edit_profile', $data);
+            } else {
+
+                $post = $this->input->post(NULL, TRUE);
+                $cleanPost = $this->security->xss_clean($post);
+
+                $cleanPost['user_id'] = $dataInfo['id'];
+                $cleanPost['firstname'] = $this->input->post('firstname');
+                $cleanPost['lastname'] = $this->input->post('lastname');
+
+                $this->user_model->updateprofile($cleanPost);
+                redirect('auth/edit_profilesucceee');
+            }
+        }
+    }
+
+    public function edit_profilesuccess()
+    {
+        $this->load->view('auth/edit_profilesuccess');
+    }
+
     public function register()
     {
         if (empty($this->session->userdata['email'])) {

@@ -1,6 +1,7 @@
 <?php
 class User_model extends CI_Model
 {
+
   public function addUser($d)
   {
     $string = array(
@@ -22,6 +23,7 @@ class User_model extends CI_Model
     $this->db->get_where('users', array('email' => $email), 1);
     return $this->db->affected_rows() > 0 ? TRUE : FALSE;
   }
+  
     public function checklogin($post)
     {
         $this->load->library('password');
@@ -51,9 +53,35 @@ class User_model extends CI_Model
         return $this->db->get()->row();
     }
 
-    public function isDuplicate($email)
+    public function updateprofile($post)
     {
-        $this->db->get_where('users', array('email' => $email), 1);
-        return $this->db->affected_rows() > 0 ? TRUE : FALSE;
+        $this->db->where('id', $post['user_id']);
+                $this->db->update('users', array('firstname' => $post['firstname'] , 'lastname' => $post['lastname']));
+                $success = $this->db->affected_rows();
+        return true;
+    }
+
+    public function getUserInfo($id)
+    {
+        $q = $this->db->get_where('users', array('id' => $id), 1);
+        if ($this->db->affected_rows() > 0) {
+            $row = $q->row();
+            return $row;
+        } else {
+            error_log('no user found getUserInfo(' . $id . ')');
+            return false;
+        }
+    }
+
+    public function get_news_by_id($id)
+    {
+        if ($id == 0)
+        {
+            $query = $this->db->get('users');
+            return $query->result_array();
+        }
+ 
+        $query = $this->db->get_where('users', array('id' => $id));
+        return $query->row_array();
     }
 }
