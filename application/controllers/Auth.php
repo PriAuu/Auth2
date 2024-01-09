@@ -73,7 +73,7 @@ class Auth extends CI_Controller
                 $cleanPost['lastname'] = $this->input->post('lastname');
 
                 $this->user_model->updateprofile($cleanPost);
-                redirect('auth/edit_profilesucceee');
+                redirect('auth/edit_profilesuccess');
             }
         }
     }
