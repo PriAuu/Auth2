@@ -39,12 +39,12 @@
           <div class="card mb-3">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="<?php echo base_url('edit/edit_profile') ?>">
+                <a class="nav-link active" href="<?php echo base_url('auth/edit_profile') ?>">
                   <i class="bi-person"></i> Basic information
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="<?php echo base_url('edit/edit_password') ?>">
+                <a class="nav-link" href="<?php echo base_url('auth/edit_password') ?>">
                   <i class="bi-key"></i> Password
                 </a>
               </li>
