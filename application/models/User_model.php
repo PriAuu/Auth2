@@ -1,6 +1,29 @@
 <?php
 class User_model extends CI_Model
 {
+
+  public function addUser($d)
+  {
+    $string = array(
+      'firstname' => $d['firstname'],
+      'lastname' => $d['lastname'],
+      'email' => $d['email'],
+      'password' => $d['password'],
+      'role' => $d['role'],
+      'status' => $d['status'],
+      'banned_users' => $d['banned_users']
+    );
+    $q = $this->db->insert_string('users', $string);
+    $this->db->query($q);
+    return $this->db->insert_id();
+  }
+
+  public function isDuplicate($email)
+  {
+    $this->db->get_where('users', array('email' => $email), 1);
+    return $this->db->affected_rows() > 0 ? TRUE : FALSE;
+  }
+  
     public function checklogin($post)
     {
         $this->load->library('password');
@@ -28,12 +51,6 @@ class User_model extends CI_Model
         $this->db->select('*');
         $this->db->from('settings');
         return $this->db->get()->row();
-    }
-
-    public function isDuplicate($email)
-    {
-        $this->db->get_where('users', array('email' => $email), 1);
-        return $this->db->affected_rows() > 0 ? TRUE : FALSE;
     }
 
     public function updateprofile($post)

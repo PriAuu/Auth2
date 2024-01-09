@@ -31,7 +31,7 @@
             <a class="nav-link" href="#">Order</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url('edit_profile') ?>">Edit Profile</a>
+            <a class="nav-link" href="<?php echo base_url('auth/edit_profile') ?>">Edit Profile</a>
           </li>
 
           <?php if (empty($this->session->userdata['email'])) { ?>
@@ -53,7 +53,7 @@
           <?php } else { ?>
 
             <li class="nav-item">
-              <a href="<?php echo base_url('logout') ?>"><button type="submit" class="btn btn-danger">Log Out</button></a>
+              <a href="<?php echo base_url('auth/logout') ?>"><button type="submit" class="btn btn-danger">Log Out</button></a>
             </li>
 
           <?php } ?>
