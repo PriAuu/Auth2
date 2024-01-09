@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.navbar-brand {
+    font-size: 35px;
+    font-weight: 900;
+}
+.nav-item {
+    margin-left: 20px;
+}
+.nav-link {
+    font-size: 22px;
+    font-weight: 500;
+    color: black;
+}
+.navbar-collapse {
+    margin-left: 40px;
+}
+.navbar {
+    background-color: #9E70B1;
+    height: 100px;
+}
+.logout {
+    margin-left: auto;
+}
+.font-25 {
+    font-size: 25;
+}
+button {
+    margin-top: 5px;
+    margin-left: 200px;
+}
+.register {
+    margin-top: 5px;
+    margin-left: 20px;
+}
+.login {
+    margin-top: 5px;
+    margin-left: 100px;
+}
